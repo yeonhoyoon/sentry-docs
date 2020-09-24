@@ -1,0 +1,21 @@
+{
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+    "workspaceFolder": "/workspace",
+    "mounts": [
+        "source=sentry-docs-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+        "source=sentry-docs-cache,target=${containerWorkspaceFolder}/.cache,type=volume",
+        "source=sentry-docs-public,target=${containerWorkspaceFolder}/public,type=volume"
+    ],
+    "postAttachCommand": "echo 'Populating cache...'; cp -a /cache/{node_modules,.cache,public} /workspace/;",
+    "extensions": [
+        "dbaeumer.vscode-eslint",
+        "dzannotti.vscode-babel-coloring",
+        "silvenon.mdx",
+        "esbenp.prettier-vscode"
+    ],
+    "forwardPorts": [
+        3000
+    ]
+}
